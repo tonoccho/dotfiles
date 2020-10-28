@@ -13,7 +13,7 @@ do
 
   if [ -f ${LINK_TARGET} ]
   then
-    mv ${LINK_TARGET} ${LINK_TARGET}.backup
+    rm ${LINK_TARGET}
   fi
   ln -snfv ${i} ${LINK_TARGET}
 done
