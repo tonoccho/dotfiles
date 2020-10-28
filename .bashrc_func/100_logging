@@ -1,0 +1,63 @@
+#!/bin/bash
+
+ALL=0
+TRACE=100
+DEBUG=200
+INFO=300
+WARN=400
+ERROR=500
+FATAL=600
+OFF=999
+
+LEVEL=${ALL}
+
+function log() {
+  local timestamp=`date "+%Y-%m-%d %H:%M:%S.%N"`
+  local level=${1}
+  local mid=${2}
+  local msg=${3}
+
+  echo "${timestamp} ${level} ${mid} ${msg}"
+}
+
+function fatal() {
+  if [ ${LEVEL} -le ${FATAL} ]
+  then
+    log FATAL ${1} "${2}" 
+  fi
+}
+
+function error() {
+  if [ ${LEVEL} -le ${ERROR} ]
+  then
+    log ERROR ${1} "${2}" 
+  fi
+}
+
+function warn() {
+  if [ ${LEVEL} -le ${WARN} ]
+  then
+    log WARN ${1} "${2}" 
+  fi
+}
+
+function info() {
+  if [ ${LEVEL} -le ${INFO} ]
+  then
+    log INFO ${1} "${2}"
+  fi
+}
+
+function debug() {
+  if [ ${LEVEL} -le ${DEBUG} ]
+  then
+    log DEBUG ${1} "${2}"
+  fi
+}
+
+function trace() {
+  if [ ${LEVEL} -le ${TRACE} ]
+  then
+    log TRACE ${1} "${2}"
+  fi
+}

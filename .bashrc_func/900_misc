@@ -1,0 +1,17 @@
+#!/bin/bash
+
+function splash () {
+  local rand=$RANDOM
+  if [ $(($rand % 3)) -eq 0 ]
+  then
+    toilet -f ivrit 'BASH' | boxes -d cat -a hc -p h8 | lolcat
+  elif [ $(($rand % 3)) -eq 1 ]
+  then
+    fortune | cowsay | lolcat
+  elif [ $(($rand % 3)) -eq 2 ]
+  then
+    linuxlogo -a -l | lolcat 
+  else
+    neofetch
+  fi
+}
