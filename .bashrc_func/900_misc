@@ -1,17 +1,14 @@
 #!/bin/bash
 
 function splash () {
-  local rand=$RANDOM
-  if [ $(($rand % 3)) -eq 0 ]
+  echo "################################################################################"
+  if [ -z ${TMUX} ]
   then
-    toilet -f ivrit 'BASH' | boxes -d cat -a hc -p h8 | lolcat
-  elif [ $(($rand % 3)) -eq 1 ]
-  then
-    fortune | cowsay | lolcat
-  elif [ $(($rand % 3)) -eq 2 ]
-  then
-    linuxlogo -a -l | lolcat 
+    toilet -f ivrit ${SHELL}
+    bash --version | head -n 1
   else
-    neofetch
+    toilet -f ivrit 'TMUX'
+    tmux -V
   fi
+  echo "################################################################################"
 }
