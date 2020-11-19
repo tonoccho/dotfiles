@@ -1,0 +1,97 @@
+#!/usr/bin/env zsh
+
+mem() {
+  local command="free -${1} | grep Mem | sed -e 's/ \+/ /g' | cut -d ' ' -f ${2}"
+  eval ${command}
+}
+mem_total() {
+  tmux_mem $1 2
+}
+
+mem_used() {
+  tmux_mem $1 3
+}
+
+mem_free() {
+  tmux_mem $1 4
+}
+
+disk() {
+  local command="df -${1} / | tail -n 1 | sed -e 's/ \+/ /g' | cut -d ' ' -f ${2}"
+  eval ${command}
+}
+
+disk_total() {
+  tmux_disk ${1} 2
+}
+
+disk_used() {
+  tmux_disk ${1} 3
+}
+
+disk_free() {
+  tmux_disk ${1} 4
+}
+
+cpu() {
+  local command="vmstat | tail -n 1 | sed -e 's/ \+/ /g' | cut -d ' ' -f ${1}"
+  eval ${command}
+}
+
+cpu_user() {
+  tmux_cpu 14
+}
+
+cpu_system() {
+  tmux_cpu 15
+}
+
+cpu_idle() {
+  tmux_cpu 16
+}
+
+cpu_wait() {
+  tmux_cpu 17
+}
+
+cpu_other() {
+  tmux_cpu 18
+}
+
+sys_cpu_pcorenum() {
+  cat /proc/cpuinfo | grep "cpu cores" | uniq | cut -d ':' -f 2 | sed 's/ //g'
+}
+
+sys_cpu_lcorenum() {
+  cat /proc/cpuinfo | grep processor | wc -l
+}
+
+sys_cpu_model() {
+  cat /proc/cpuinfo | grep "model name" | uniq | cut -d ":" -f 2 | sed 's/^[ \t]*//'
+}
+
+sys_cpu_average_mhz() {
+  cat /proc/cpuinfo | grep "cpu MHz" | cut -d ':' -f 2 | sort | awk '{sum+=$1} END {print sum/NR}'
+}
+
+sys_wifi_ssid() {
+  iwgetid -r
+}
+
+sys_net_ipaddress() {
+  hostname -I
+}
+
+is_git_repo() {
+  git rev-parse --is-inside-work-tree > /dev/null 2>&1
+  echo $?
+}
+
+git_cbranch() {
+  git rev-parse --abbrev-ref HEAD
+}
+
+git_stash_size() {
+  git stash list | wc -l
+}
+
