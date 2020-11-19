@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+function splash () {
+  echo "################################################################################"
+  if [ -z ${TMUX} ]
+  then
+    toilet -f ivrit ${SHELL}
+    zsh --version | head -n 1
+  else
+    toilet -f ivrit 'TMUX'
+    tmux -V
+  fi
+  echo "################################################################################"
+}

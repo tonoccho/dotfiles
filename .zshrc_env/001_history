@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+export HISTSIZE=1000
+export HISTFILSIZE=1000000
+export HISTCONTROL=ignoreboth
+export HISTIGNORE="fg*:bg*:history*:cd*:ls*"
+export HISTTIMEFORMAT=' %Y-%m-%d %T '
+
