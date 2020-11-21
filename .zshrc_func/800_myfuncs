@@ -78,8 +78,6 @@ sys_cpu_average_mhz() {
   cat /proc/cpuinfo | grep "cpu MHz" | cut -d ':' -f 2 | awk '{sum+=$1} END {print sum/NR}' | cut -d '.' -f 1
 }
 
-
-
 sys_wifi_ssid() {
   iwgetid -r
 }
@@ -120,6 +118,10 @@ sys_net_wave_level() {
 is_git_repo() {
   git rev-parse --is-inside-work-tree > /dev/null 2>&1
   echo $?
+}
+
+sys_os_desc() {
+  cat /etc/lsb-release | grep DISTRIB_DESCRIPTION | cut -d '=' -f 2 | sed 's/"//g'
 }
 
 git_cbranch() {

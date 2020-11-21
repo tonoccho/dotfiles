@@ -6,9 +6,16 @@ function splash () {
   then
     toilet -f ivrit ${SHELL}
     zsh --version | head -n 1
+    
   else
-    toilet -f ivrit 'TMUX'
+    toilet -f ivrit "TMUX"
     tmux -V
   fi
+  echo "Operationg System : `sys_os_desc`"
   echo "################################################################################"
+
+  if [ ${TMUX_PANE} != '%0' ]
+  then
+    clear
+  fi
 }
