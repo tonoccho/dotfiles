@@ -5,15 +5,15 @@ mem() {
   eval ${command}
 }
 mem_total() {
-  tmux_mem $1 2
+  mem $1 2
 }
 
 mem_used() {
-  tmux_mem $1 3
+  mem $1 3
 }
 
 mem_free() {
-  tmux_mem $1 4
+  mem $1 4
 }
 
 disk() {
@@ -22,15 +22,15 @@ disk() {
 }
 
 disk_total() {
-  tmux_disk ${1} 2
+  disk ${1} 2
 }
 
 disk_used() {
-  tmux_disk ${1} 3
+  disk ${1} 3
 }
 
 disk_free() {
-  tmux_disk ${1} 4
+  disk ${1} 4
 }
 
 cpu() {
@@ -39,23 +39,27 @@ cpu() {
 }
 
 cpu_user() {
-  tmux_cpu 14
+  cpu 14
 }
 
 cpu_system() {
-  tmux_cpu 15
+  cpu 15
 }
 
 cpu_idle() {
-  tmux_cpu 16
+  cpu 16
 }
 
 cpu_wait() {
-  tmux_cpu 17
+  cpu 17
 }
 
 cpu_other() {
-  tmux_cpu 18
+  cpu 18
+}
+
+cpu_usage() {
+  echo "U:`cpu_user` S:`cpu_system` I:`cpu_idle` W:`cpu_wait` O:`cpu_other`" 
 }
 
 sys_cpu_pcorenum() {
@@ -71,8 +75,10 @@ sys_cpu_model() {
 }
 
 sys_cpu_average_mhz() {
-  cat /proc/cpuinfo | grep "cpu MHz" | cut -d ':' -f 2 | sort | awk '{sum+=$1} END {print sum/NR}'
+  cat /proc/cpuinfo | grep "cpu MHz" | cut -d ':' -f 2 | awk '{sum+=$1} END {print sum/NR}' | cut -d '.' -f 1
 }
+
+
 
 sys_wifi_ssid() {
   iwgetid -r
@@ -80,6 +86,35 @@ sys_wifi_ssid() {
 
 sys_net_ipaddress() {
   hostname -I
+}
+
+sys_net_bps() {
+  nmcli dev wifi | grep `sys_wifi_ssid` | head -n 1 | sed 's/ \+/ /g' | cut -d ' ' -f 6
+}
+
+sys_net_wave_graph() {
+  nmcli dev wifi | grep `sys_wifi_ssid` | head -n 1 | sed 's/ \+/ /g' | cut -d ' ' -f 9
+}
+
+sys_net_wave_fig() {
+  nmcli dev wifi | grep `sys_wifi_ssid` | head -n 1 | sed 's/ \+/ /g' | cut -d ' ' -f 8
+}
+
+sys_net_wave_level() {
+  local level=`sys_net_wave_fig`
+  local lvlctr=`expr ${level} / 10`
+  local lvlblank=`expr 10 - ${lvlctr}`
+
+  local lvlstr=""
+  for i in `seq 1 ${lvlctr}`
+  do
+    lvlstr="${lvlstr}■"
+  done
+  for i in `seq 1 ${lvlblank}`
+  do
+    lvlstr="${lvlstr}□"
+  done
+  echo "${lvlstr} ${level}"
 }
 
 is_git_repo() {
@@ -94,4 +129,3 @@ git_cbranch() {
 git_stash_size() {
   git stash list | wc -l
 }
-
