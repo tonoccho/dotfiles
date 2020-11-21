@@ -1,7 +1,5 @@
 #!/bin/bash
 
-aa
-
 SCRIPT_PATH=`dirname $0`
 SCRIPT_ABS_PATH=`realpath ${SCRIPT_PATH}`
 
