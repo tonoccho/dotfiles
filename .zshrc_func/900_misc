@@ -13,9 +13,4 @@ function splash () {
   fi
   echo "Operationg System : `sys_os_desc`"
   echo "################################################################################"
-
-  if [ ${TMUX_PANE} != '%0' ]
-  then
-    clear
-  fi
 }
