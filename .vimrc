@@ -41,3 +41,4 @@ set tabstop=2
 set shiftwidth=2
 
 nnoremap <C-t> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
