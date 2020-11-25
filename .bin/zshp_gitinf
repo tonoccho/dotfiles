@@ -1,0 +1,38 @@
+#!/usr/bin/env zsh
+
+source ${HOME}/.zshrc_func/800_myfuncs
+source ${HOME}/.zshrc_func/100_logging
+
+isGitRepository() {
+  [ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1
+  echo $?
+}
+
+gitBranchName() {
+  git branch --contains=HEAD | cut -d ' ' -f 2
+}
+
+gitModifiedCount() {
+  git status --short | grep -e ".M" | wc -l
+}
+
+gitNewFileCount(){
+  git status --short | grep "A." | wc -l
+}
+
+gitUnstagedCount() {
+  git status --short | grep "??" | wc -l
+}
+
+gitStashSize() {
+  echo $((`git stash list | wc -l` - 1))
+}
+
+gitRepositoryInfo() {
+  if [ `isGitRepository` -eq 0 ]
+  then
+    echo "`gitBranchName`  `gitModifiedCount`  `gitNewFileCount`  `gitUnstagedCount`  `gitStashSize`"
+  fi
+}
+
+gitRepositoryInfo

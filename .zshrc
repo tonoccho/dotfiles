@@ -23,5 +23,5 @@ splash
 autoload -Uz colors
 colors
 
-PROMPT="%K{236}%F{255}ﲾ %m  %n  %~ %# %f%k"
+PROMPT="%K{236}%F{255}ﲾ %m  %n  %~ `zshp_gitinf` %# %f%k"
 export RPROMPT="RPROMPT"
