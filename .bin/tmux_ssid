@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+source ${HOME}/.zshrc_func/800_myfuncs
+source ${HOME}/.zshrc_func/100_logging
+
+sys_wifi_ssid

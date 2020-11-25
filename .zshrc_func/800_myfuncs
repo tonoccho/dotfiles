@@ -16,6 +16,12 @@ mem_free() {
   mem $1 4
 }
 
+mem_free_percentage() {
+  local free_mem=`mem_free b`
+  local total_mem=`mem_total b`
+  echo $(( ${free_mem} * 100 / ${total_mem} ))
+}
+
 disk() {
   local command="df -${1} / | tail -n 1 | sed -e 's/ \+/ /g' | cut -d ' ' -f ${2}"
   eval ${command}
