@@ -19,3 +19,9 @@ if [ -d ${HOME}/.zshrc_func ]; then
 fi
 
 splash
+
+autoload -Uz colors
+colors
+
+PROMPT="%K{236}%F{255}ﲾ %m  %n  %~ %# %f%k"
+export RPROMPT="RPROMPT"

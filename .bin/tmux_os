@@ -1,0 +1,40 @@
+#!/usr/bin/env zsh
+
+source ${HOME}/.zshrc_func/800_myfuncs
+source ${HOME}/.zshrc_func/100_logging
+
+ostype() {
+  if [ -f /etc/lsb-release ]
+  then
+    echo "ubuntu"
+  else
+    echo "unknown"
+  fi
+}
+
+osdesc() {
+  if [ ${1} = "ubuntu" ]
+  then
+    cat /etc/lsb-release | grep DISTRIB_DESCRIPTION | cut -d '"' -f 2
+  else
+    echo "????"
+  fi
+}
+
+osicon() {
+  if [ ${1} = "ubuntu" ]
+  then
+    echo " "
+  else
+    echo " "
+  fi
+}
+
+tmux.os() {
+  local type=`ostype`
+  local desc=`osdesc ${type}`
+  local icon=`osicon ${type}`
+  echo "${icon}${desc}"
+}
+
+tmux.os
