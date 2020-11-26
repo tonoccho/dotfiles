@@ -18,7 +18,6 @@ if dein#load_state('/home/seiji/.cache/dein')
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('scrooloose/nerdtree')
-
   " Required:
   call dein#end()
   call dein#save_state()
@@ -60,4 +59,6 @@ set statusline=%!SetStatusLine()
 set laststatus=2
 
 set cursorline
-set cursorcolumn
+
+set colorcolumn=120
+highlight ColorColumn guibg=#000000 ctermbg=gray
