@@ -36,8 +36,12 @@ gitBranchSituation() {
   if [ ${aorb} = "ahead" ]
   then
     echo -n " "
-  else
+  elif [ ${aorb} = "behind" ]
+  then
     echo -n " "
+  else
+   echo -n " "
+   num=0
   fi
   echo ${num}
 }
