@@ -28,18 +28,14 @@ gitStashSize() {
   echo $((`git stash list | wc -l` - 1))
 }
 
-gitAheadCount() {
-  git branch -v | grep 'ahead' | sed -r 's/[ *]\s(\S*).*(\[(ahead|behind).+?\]).*/\1 \2/g'
-}
-
-gitBehindCount() {
-  git branch -v | grep 'behind' | sed -r 's/[ *]\s(\S*).*(\[(ahead|behind).+?\]).*/\1 \2/g'
+gitBranchSituation() {
+  git branch -v | grep -E 'ahead|behind' | sed -r 's/[ *]\s(\S*).*(\[(ahead|behind).+?\]).*/\2/g'
 }
 
 gitRepositoryInfo() {
   if [ `isGitRepository` -eq 0 ]
   then
-    echo "`gitBranchName`  `gitModifiedCount`  `gitNewFileCount`  `gitUnstagedCount`  `gitStashSize`"
+    echo "`gitBranchName` `gitBranchSituation`  `gitModifiedCount`  `gitNewFileCount`  `gitUnstagedCount`  `gitStashSize`"
   fi
 }
 
