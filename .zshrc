@@ -31,7 +31,7 @@ setLPrompt() {
 }
 
 setRPrompt() {
-  export RPROMPT="`zshp_gitinf`"
+  RPROMPT="%K{236}%F{255} `zshp_gitinf` %f%k"
 }
 
 my_preexec() {

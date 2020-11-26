@@ -38,19 +38,19 @@ gitWeather() {
   
   if [ ${score} -eq 0 ]
   then
-    echo "滛(${score})"
+    echo "滛"
   elif [ ${score} -le 3 ]
   then
-    echo " (${score})"
+    echo " "
   else
-    echo "殺(${score})"
+    echo "殺"
   fi
 }
 
 gitRepositoryInfo() {
   if [ `isGitRepository` -eq 0 ]
   then
-    echo " `gitWeather` `gitBranchName`  `gitModifiedCount`  `gitNewFileCount`  `gitUnstagedCount`  `gitStashSize`"
+    echo " `gitWeather` `gitBranchName`  `gitModifiedCount`  `gitNewFileCount`  `gitUnstagedCount`  `gitStashSize`"
   fi
 }
 
