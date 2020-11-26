@@ -42,3 +42,6 @@ set shiftwidth=2
 
 nnoremap <C-t> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
+
+set statusline=\ \ %F
+set laststatus=2
