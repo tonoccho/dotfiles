@@ -28,6 +28,14 @@ gitStashSize() {
   echo $((`git stash list | wc -l` - 1))
 }
 
+gitAheadCount() {
+  git branch -v | grep 'ahead' | sed -r 's/[ *]\s(\S*).*(\[(ahead|behind).+?\]).*/\1 \2/g'
+}
+
+gitBehindCount() {
+  git branch -v | grep 'behind' | sed -r 's/[ *]\s(\S*).*(\[(ahead|behind).+?\]).*/\1 \2/g'
+}
+
 gitRepositoryInfo() {
   if [ `isGitRepository` -eq 0 ]
   then
