@@ -50,7 +50,7 @@ gitBranchSituation() {
 gitRepositoryInfo() {
   if [ `isGitRepository` -eq 0 ]
   then
-    echo "`gitBranchName` `gitBranchSituation`  `gitModifiedCount`  `gitNewFileCount`  `gitUnstagedCount`  `gitStashSize`"
+    echo " `gitBranchName` `gitBranchSituation`  `gitModifiedCount`  `gitNewFileCount`  `gitUnstagedCount`  `gitStashSize`"
   fi
 }
 

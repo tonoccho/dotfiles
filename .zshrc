@@ -28,7 +28,7 @@ setLPrompt() {
 }
 
 setRPrompt() {
-  RPROMPT="%K{236}%F{255} `zshp_javainf` `zshp_pyenvinf` `zshp_rubyinf` `zshp_gitinf` %f%k"
+  RPROMPT="%K{236}%F{255}`zshp_javainf``zshp_pyenvinf``zshp_rubyinf``zshp_gitinf`%f%k"
 }
 
 my_preexec() {

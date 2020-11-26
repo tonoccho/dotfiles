@@ -17,7 +17,7 @@ gitPyenvInfo() {
     then
       echo ""
     else
-      echo " `getPyenvPythonVersion`"
+      echo "  `getPyenvPythonVersion`"
     fi
   fi
 }

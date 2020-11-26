@@ -17,7 +17,7 @@ gitJavaInfo() {
     then
       echo ""
     else
-      echo " `getJavaVersion`"
+      echo "  `getJavaVersion`"
     fi
   fi
 }

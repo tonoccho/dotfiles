@@ -17,7 +17,7 @@ gitRubyInfo() {
     then
       echo ""
     else
-      echo " `getRubyVersion`"
+      echo "  `getRubyVersion`"
     fi
   fi
 }
