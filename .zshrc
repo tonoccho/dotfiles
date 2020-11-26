@@ -20,8 +20,27 @@ fi
 
 splash
 
+
 autoload -Uz colors
+autoload -Uz add-zsh-hook
+
 colors
 
-PROMPT="%K{236}%F{255}ﲾ %m  %n  %~ `zshp_gitinf` %# %f%k"
-export RPROMPT="RPROMPT"
+setLPrompt() {
+  PROMPT="%K{236}%F{255}ﲾ %m  %n  %~ %# %f%k"
+}
+
+setRPrompt() {
+  export RPROMPT="`zshp_gitinf`"
+}
+
+my_preexec() {
+}
+
+my_precmd() {
+  setLPrompt
+  setRPrompt
+}
+
+add-zsh-hook preexec my_preexec
+add-zsh-hook precmd my_precmd
