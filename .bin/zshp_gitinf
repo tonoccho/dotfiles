@@ -25,7 +25,7 @@ gitUnstagedCount() {
 }
 
 gitStashSize() {
-  echo $((`git stash list | wc -l` - 1))
+  git stash list | wc -l
 }
 
 gitBranchSituation() {
