@@ -32,16 +32,17 @@ gitBranchSituation() {
   local situation=`git branch -v | grep -E 'ahead|behind' | sed -r 's/[ *]\s(\S*).*\[((ahead|behind).+?)\].*/\2/g'`
   local aorb=`echo ${situation} | cut -d ' ' -f 1`
   local num=`echo ${situation} | cut -d ' ' -f 2`
-
-  if [ ${aorb} = "ahead" ]
+  
+  if [ -Z ${aorb} ]
+  then
+    echo -n " "
+    num=0
+  elif [ ${aorb} = "ahead" ]
   then
     echo -n " "
   elif [ ${aorb} = "behind" ]
   then
     echo -n " "
-  else
-   echo -n " "
-   num=0
   fi
   echo ${num}
 }
