@@ -1,0 +1,25 @@
+#/usr/bin/env zsh
+
+isJenvEnabled() {
+  which jenv > /dev/null 2>&1
+  echo $?
+}
+
+getJavaVersion() {
+  jenv version | grep -v ${JENV_GLOBAL_VERSION} |  cut -d ' ' -f 1
+}
+
+gitJavaInfo() {
+  if [ `isJenvEnabled` -eq 0 ]
+  then
+    local java_version=`getJavaVersion`
+    if [ -z ${java_version} ]
+    then
+      echo ""
+    else
+      echo " `getJavaVersion`"
+    fi
+  fi
+}
+
+gitJavaInfo

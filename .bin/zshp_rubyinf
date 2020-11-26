@@ -1,0 +1,25 @@
+#/usr/bin/env zsh
+
+isRbenvEnabled() {
+  which rbenv > /dev/null 2>&1
+  echo $?
+}
+
+getRubyVersion() {
+  rbenv version | grep -v ${RBENV_GLOBAL_VERSION} | cut -d ' ' -f 1
+}
+
+gitRubyInfo() {
+  if [ `isRbenvEnabled` -eq 0 ]
+  then
+    local ruby_version=`getRubyVersion`
+    if [ -z ${ruby_version} ]
+    then
+      echo ""
+    else
+      echo " `getRubyVersion`"
+    fi
+  fi
+}
+
+gitRubyInfo
