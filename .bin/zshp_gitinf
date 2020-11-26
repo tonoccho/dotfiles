@@ -28,29 +28,10 @@ gitStashSize() {
   echo $((`git stash list | wc -l` - 1))
 }
 
-gitWeather() {
-  local modifiedCount=`gitModifiedCount`
-  local newFileCount=`gitNewFileCount`
-  local unstagedCount=`gitUnstagedCount`
-  local stachSize=`gitStashSize`
-
-  local score=$((modifiedCount + newFileCount + unstagedCount + stashSize))
-  
-  if [ ${score} -eq 0 ]
-  then
-    echo "滛"
-  elif [ ${score} -le 3 ]
-  then
-    echo " "
-  else
-    echo "殺"
-  fi
-}
-
 gitRepositoryInfo() {
   if [ `isGitRepository` -eq 0 ]
   then
-    echo " `gitWeather` `gitBranchName`  `gitModifiedCount`  `gitNewFileCount`  `gitUnstagedCount`  `gitStashSize`"
+    echo "`gitBranchName`  `gitModifiedCount`  `gitNewFileCount`  `gitUnstagedCount`  `gitStashSize`"
   fi
 }
 
