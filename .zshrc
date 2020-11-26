@@ -18,9 +18,6 @@ if [ -d ${HOME}/.zshrc_func ]; then
   done
 fi
 
-splash
-
-
 autoload -Uz colors
 autoload -Uz add-zsh-hook
 
