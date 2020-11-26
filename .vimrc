@@ -43,5 +43,18 @@ set shiftwidth=2
 nnoremap <C-t> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
-set statusline=\ \ %F
+function! SetStatusLine()
+  if mode() =~ 'i'
+    let mode_name='פֿ'
+  elseif mode() =~ 'n'
+    let mode_name = ''
+  elseif mode() =~ 'R'
+    let mode_name = ''
+  else
+    let mode_name = '﯎'
+  endif
+  return "   " . mode_name . "   %f%<%= %{&fenc!=''?&fenc:&enc}  ﯖ %{&ff}   %Y  藺[%04l, %03v]"
+endfunction
+                                                
+set statusline=%!SetStatusLine()
 set laststatus=2
