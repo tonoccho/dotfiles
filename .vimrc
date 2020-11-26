@@ -58,3 +58,6 @@ endfunction
                                                 
 set statusline=%!SetStatusLine()
 set laststatus=2
+
+set cursorline
+set cursorcolumn
