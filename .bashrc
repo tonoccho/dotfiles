@@ -13,5 +13,3 @@ if [ -d ${HOME}/.bashrc_func ]; then
     source ${HOME}/.bashrc_func/${i}
   done
 fi
-
-splash
