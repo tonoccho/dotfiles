@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-export JENV_ROOT="${HOME}/.gitrepos/github.com/jenv/jenv"
+export JENV_ROOT="${HOME}/.jenv"
 export JENV_GLOBAL_VERSION=${JENV_ROOT}/version
 export PATH="${JENV_ROOT}/bin:$PATH"
 

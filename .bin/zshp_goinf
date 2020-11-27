@@ -1,0 +1,25 @@
+#/usr/bin/env zsh
+
+isGoenvEnabled() {
+  which goenv > /dev/null 2>&1
+  echo $?
+}
+
+getGoVersion() {
+  goenv version | grep -v ${GOENV_GLOBAL_VERSION} | cut -d ' ' -f 1
+}
+
+gitGoenvInfo() {
+  if [ `isGoenvEnabled` -eq 0 ]
+  then
+    local go_version=`getGoVersion`
+    if [ -z ${go_version} ]
+    then
+      echo ""
+    else
+      echo "  `getGoVersion`"
+    fi
+  fi
+}
+
+gitGoenvInfo
