@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 export GOENV_ROOT="${HOME}/.goenv"
-export GOENV_GLOBAL_VERSION=${RBENV_ROOT}/version
+export GOENV_GLOBAL_VERSION=${GOENV_ROOT}/version
 export PATH="${GOENV_ROOT}/bin:$PATH"
 
 if command -v goenv 1>/dev/null 2>&1

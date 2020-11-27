@@ -6,7 +6,7 @@ isNodenvEnabled() {
 }
 
 getNodeVersion() {
-  nodenv version | grep -v ${GOENV_GLOBAL_VERSION} | cut -d ' ' -f 1
+  nodenv version | grep -v ${NODENV_GLOBAL_VERSION} | cut -d ' ' -f 1
 }
 
 gitNodeInfo() {
