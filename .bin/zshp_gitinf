@@ -9,7 +9,7 @@ isGitRepository() {
 }
 
 gitBranchName() {
-  git branch --contains=HEAD | cut -d ' ' -f 2
+  git branch --contains=HEAD | cut -d ' ' -f 2 | grep -v '^$'
 }
 
 gitModifiedCount() {
