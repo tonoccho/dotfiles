@@ -1,5 +1,16 @@
-# This is Git's per-user configuration file.
-[user]
-# Please adapt and uncomment the following lines:
-	name = seiji tonouchi
-	email = s.tonouchi@gmail.com
+[includeIf "gitdir:~/src/personal"]
+  path = .gituser-personal
+[includeIf "girdir:~/src/work"]
+  path = .gituser-work
+[cola]
+  spellcheck = false
+[alias]
+  co = checkout
+  br = branch
+  ci = commit
+  st = status
+  apply = !f() {git merge --no-commit --no-ff $1}
+[pager]
+  branch = false
+[core]
+  editor = vim
