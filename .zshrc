@@ -41,3 +41,21 @@ my_precmd() {
 
 add-zsh-hook preexec my_preexec
 add-zsh-hook precmd my_precmd
+
+if [ -d ${HOME}/.zshrc_extenv ]; then
+  for i in `ls ${HOME}/.zshrc_extenv`
+  do
+    source ${HOME}/.zshrc_extenv/${i}
+  done
+fi
+
+if [ -d ${HOME}/.zshrc_extfunc ]; then
+  for i in `ls ${HOME}/.zshrc_extfunc`
+  do
+    source ${HOME}/.zshrc_extfunc/${i}
+  done
+fi
+
+if [ -d ${HOME}/.extbin ]; then
+  PATH=${HOME}/.extbin:${PATH}
+fi
