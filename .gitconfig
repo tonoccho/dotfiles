@@ -1,6 +1,6 @@
-[includeIf "gitdir:~/src/personal"]
+[includeIf "gitdir:~/src/personal/"]
   path = .gituser-personal
-[includeIf "gitdir:~/src/work"]
+[includeIf "gitdir:~/src/work/"]
   path = .gituser-work
 [cola]
   spellcheck = false
