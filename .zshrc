@@ -7,7 +7,6 @@ do
   then
     for i in `ls ${TARGET_DIR}`
     do
-      echo "sourcing ${TARGET_DIR}/${i}"
       source ${TARGET_DIR}/${i}
     done
   fi
