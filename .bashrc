@@ -1,15 +1,14 @@
-#!/bin/bash
+#!/use/bin/zsh
 
-if [ -d ${HOME}/.bashrc_env ]; then
-  for i in `ls ${HOME}/.bashrc_env`
-  do
-    source ${HOME}/.bashrc_env/${i}
-  done
-fi
-
-if [ -d ${HOME}/.bashrc_func ]; then
-  for i in `ls ${HOME}/.bashrc_func`
-  do
-    source ${HOME}/.bashrc_func/${i}
-  done
-fi
+for i in `echo ".bashrc_env .bashrc_extenv .bashrc_func .bashrc_extfunc"`
+do
+  TARGET_DIR=${HOME}/${i}
+  if [ -d ${TARGET_DIR} ]; 
+  then
+    for i in `ls ${TARGET_DIR}`
+    do
+      echo "sourcing ${TARGET_DIR}/${i}"
+      source ${TARGET_DIR}/${i}
+    done
+  fi
+done

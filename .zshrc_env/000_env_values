@@ -1,3 +1,16 @@
 #!/usr/bin/env zsh
 
-PATH=${PATH}:/snap/bin/:${HOME}/.bin
+if [ -d /snap/bin/ ]
+then
+  PATH=${PATH}:/snap/bin/
+fi
+
+if [ -d ${HOME}/.extbin ]
+then
+  PATH=${PATH}:${HOME}/.extbin
+fi
+
+if [ -d ${HOME}/.bin ]
+then
+  PATH=${PATH}:${HOME}/.bin
+fi

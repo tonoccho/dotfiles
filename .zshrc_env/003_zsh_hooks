@@ -1,0 +1,20 @@
+autoload -Uz add-zsh-hook
+
+setLPrompt() {                                                                                                          
+  PROMPT="%K{236}%F{255}ﲾ %m  %n  %~ %# %f%k"                                                                         
+}                                                                                                                       
+                                                                                                                        
+setRPrompt() {                                                                                                          
+  RPROMPT="%K{236}%F{255}`zshp_nodeinf``zshp_goinf``zshp_javainf``zshp_pyenvinf``zshp_rubyinf``zshp_gitinf`%f%k"        
+}                                                                                                                       
+                                                                                                                        
+my_preexec() {                                                                                                          
+}                                                                                                                       
+                                                                                                                        
+my_precmd() {                                                                                                           
+  setLPrompt                                                                                                            
+  setRPrompt                                                                                                            
+}                                                                                                                       
+                                                                                                                        
+add-zsh-hook preexec my_preexec                                                                                         
+add-zsh-hook precmd my_precmd   
