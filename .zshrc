@@ -42,17 +42,17 @@ my_precmd() {
 add-zsh-hook preexec my_preexec
 add-zsh-hook precmd my_precmd
 
-if [ -d ${HOME}/.zshrc_extenv ]; then
+if [ -d ${HOME}/.zshrc.extenv ]; then
   for i in `ls ${HOME}/.zshrc_extenv`
   do
-    source ${HOME}/.zshrc_extenv/${i}
+    source ${HOME}/.zshrc.extenv/${i}
   done
 fi
 
-if [ -d ${HOME}/.zshrc_extfunc ]; then
-  for i in `ls ${HOME}/.zshrc_extfunc`
+if [ -d ${HOME}/.zshrc.extfunc ]; then
+  for i in `ls ${HOME}/.zshrc.extfunc`
   do
-    source ${HOME}/.zshrc_extfunc/${i}
+    source ${HOME}/.zshrc.extfunc/${i}
   done
 fi
 

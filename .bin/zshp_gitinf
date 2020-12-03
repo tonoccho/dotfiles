@@ -9,7 +9,7 @@ isGitRepository() {
 }
 
 gitBranchName() {
-  git branch --contains=HEAD | cut -d ' ' -f 2 | grep -v '^$'
+  git branch --contains=HEAD | cut -d ' ' -f 2 | cut -b 1-16 | grep -v '^$'
 }
 
 gitModifiedCount() {
@@ -29,7 +29,7 @@ gitStashSize() {
 }
 
 gitBranchSituation() {
-  local situation=`git branch -v | grep -E 'ahead|behind' | sed -r 's/[ *]\s(\S*).*\[((ahead|behind).+?)\].*/\2/g'`
+  local situation=`git branch -v | grep \* | grep -E 'ahead|behind' | sed -r 's/[ *]\s(\S*).*\[((ahead|behind).+?)\].*/\2/g'`
   local aorb=`echo ${situation} | cut -d ' ' -f 1`
   local num=`echo ${situation} | cut -d ' ' -f 2`
   
