@@ -29,11 +29,7 @@ gitStashSize() {
 }
 
 gitBranchSituation() {
-  local situation=`git branch -v | grep  \* | grep -E 'ahead|behind' | sed -r 's/[ *]\s(\S*).*\[((ahead|behind).+?)\].*/\2/g'`
   local aorb=`echo ${situation} | cut -d ' ' -f 1`
-  local num=`echo ${situation} | cut -d ' ' -f 2`
-  
-  if [ -z ${aorb} ]
   then
     echo -n " "
     num=0
