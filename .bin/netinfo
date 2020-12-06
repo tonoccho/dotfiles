@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+source ${HOME}/.lib/netinfo
+
+wifiStatus() {
+  local wifiStatus=`getWifiStatus`
+  if [ "${wifiStatus}" = "connected" ]
+  then
+    echo "\uf1eb `getWifiAccessPoint` \uf502 `getNetIpAddress`\uf012 `getWifiSignalLevel`% \uf9c4`getWifiBitRate`Mbps"
+  else
+    echo "\ufaa9"
+  fi
+}
+
+wifiStatus

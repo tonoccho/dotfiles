@@ -1,0 +1,58 @@
+getWifiInfo() {
+  nmcli dev wifi | grep -v "\-\-\-" | grep -e "^\*.*$" | head -n 1 | sed 's/ \+/ /g' | cut -d ' ' -f ${1}
+}
+
+getWifiStatus() {
+  local inUse=`getWifiInfo 1`
+  if [ "${inUse}" = "*" ]
+  then
+    echo "connected"
+  else
+    echo "disconnected"
+  fi
+}
+
+getWifiAccessPoint() {
+  iwgetid -r
+}
+
+getWifiBitRate() {
+  getWifiInfo 6
+}
+
+getWifiSignalLevel() {
+  getWifiInfo 8
+}
+
+getWifiSignalLevelGlyph() {
+  local signalLevel=`getWifiSignalLevel`
+
+  signalLevel=$((${signalLevel} / 20))
+  
+  case ${signalLevel} in
+    5)
+      echo "\uf2c7"
+      ;;
+    4)
+      echo "\uf2c8"
+      ;;
+    3)
+      echo "\uf2c9"
+      ;;
+    2)
+      echo "\uf2ca"
+      ;;
+    1)
+      echo "\uf2cb"
+      ;;
+    0)
+      echo "\!"
+      ;;
+  esac
+}
+
+getNetIpAddress() {
+  hostname -I
+}
+
+
