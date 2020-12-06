@@ -57,9 +57,14 @@ getWifiIpAddress() {
 }
 
 getEtherStatus() {
-  getNetDeviceState `getEtherDviceName`
+  getNetDeviceState `getEtherDeviceName`
 }
 
 getEtherIpAddress() {
   getNetDeviceAddress `getEtherDeviceName`
 }
+
+getEtherConnection() {
+  getNetDeviceGeneralConnection `getEtherDeviceName`
+}
+
