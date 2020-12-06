@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+source ${HOME}/.lib/osinfo
+
+OSINFO_OS_NAME=`getOsName`
+
+if [ ${OSINFO_OS_NAME} = "Pop!_OS" ]
+then
+  source ${HOME}/.lib/osinfo.popos
+elif [ ${OSINFO_OS_NAME} = "Ubuntu" ]
+then
+  source ${HOME}/.lib/osinfo.ubuntu
+else
+  source ${HOME}/.lib/osinfo.unknown
+fi
+
+echo "`getOsGlyph` `getOsName` `getOsVersion`"

@@ -1,0 +1,15 @@
+getOsProp() {
+  cat /etc/os-release | \
+  grep ${1}           | \
+  head -n 1           | \
+  cut -d '=' -f 2     | \
+  sed 's/"//g'
+}
+
+getOsName() {
+  getOsProp NAME
+}
+
+getOsVersion() {  
+  getOsProp VERSION
+}

@@ -1,0 +1,3 @@
+getOsGlyph () {
+  echo -e "\uf31b"
+}
