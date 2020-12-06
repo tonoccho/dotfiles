@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+source ${HOME}/.lib/netinfo
+
+wifiStatus() {
+  local etherStatus=`getEtherStatus`
+  if [ "${etherStatus}" = "connected" ]
+  then
+    echo "\uf502 `getEtherIpAddress` \uf9c4`getEtherBitRate`Mbps"
+  else
+    echo "\uf701"
+  fi
+}
+
+wifiStatus

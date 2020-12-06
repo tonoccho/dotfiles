@@ -1,58 +1,65 @@
-getWifiInfo() {
-  nmcli dev wifi | grep -v "\-\-\-" | grep -e "^\*.*$" | head -n 1 | sed 's/ \+/ /g' | cut -d ' ' -f ${1}
+getWifiDeviceName() {
+  nmcli d | grep wifi | head -n 1 | sed 's/ \+/ /g' | cut -d ' ' -f 1
 }
 
-getWifiStatus() {
-  local inUse=`getWifiInfo 1`
-  if [ "${inUse}" = "*" ]
+getEtherDeviceName() {
+  nmcli d | grep ethernet | head -n 1 | sed 's/ \+/ /g' | cut -d ' ' -f 1
+}
+
+getNetDeviceInfo() {
+  nmcli d show ${1} | grep "${2}" | sed 's/ \+/ /g' | cut -d ' ' -f 2
+}
+
+getNetiDeviceType() {
+  getNetDeviceInfo ${1} GENERAL.TYPE
+}
+
+getNetDeviceState() {
+  local state=`getNetDeviceInfo ${1} GENERAL.STATE`
+  if [ ${state} -eq 100 ]
   then
     echo "connected"
   else
-    echo "disconnected"
+    echo "dicsonnected"
   fi
 }
 
+getNetDeviceAddress() {
+  getNetDeviceInfo ${1} "IP4\.ADDRESS\[1\]"
+}
+
+getNetDeviceGeneralConnection() {
+  getNetDeviceInfo ${1} GENERAL.CONNECTION
+}
+
+getWifiInfo() {
+  nmcli dev wifi | grep ${1} | head -n 1 | sed 's/ \+/ /g' | cut -d ' ' -f ${2}
+}
+
+getWifiStatus() {
+  getNetDeviceState `getWifiDeviceName`
+}
+
 getWifiAccessPoint() {
-  iwgetid -r
+  getNetDeviceGeneralConnection `getWifiDeviceName`
 }
 
 getWifiBitRate() {
-  getWifiInfo 6
+  getWifiInfo `getWifiAccessPoint` 6
 }
 
 getWifiSignalLevel() {
-  getWifiInfo 8
+  getWifiInfo `getWifiAccessPoint` 8
 }
 
-getWifiSignalLevelGlyph() {
-  local signalLevel=`getWifiSignalLevel`
-
-  signalLevel=$((${signalLevel} / 20))
-  
-  case ${signalLevel} in
-    5)
-      echo "\uf2c7"
-      ;;
-    4)
-      echo "\uf2c8"
-      ;;
-    3)
-      echo "\uf2c9"
-      ;;
-    2)
-      echo "\uf2ca"
-      ;;
-    1)
-      echo "\uf2cb"
-      ;;
-    0)
-      echo "\!"
-      ;;
-  esac
+getWifiIpAddress() {
+  getNetDeviceAddress `getWifiDeviceName`
 }
 
-getNetIpAddress() {
-  hostname -I
+getEtherStatus() {
+  getNetDeviceState `getEtherDviceName`
 }
 
-
+getEtherIpAddress() {
+  getNetDeviceAddress `getEtherDeviceName`
+}
