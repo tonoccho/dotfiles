@@ -1,0 +1,60 @@
+#!/usr/bin/env zsh
+
+source ${HOME}/.lib/gitinfo
+
+gitBranchInfo() {
+  echo "\uf1d3 $(getGitCurrentBranch)"
+}
+
+gitRepoInfo() {
+  echo "\
+\uf044 $(gitModifiedFilesCount) \
+\uf0fe $(gitAddedFilesCount) \
+\uf059 $(gitUntrackedFilesCount) \
+\uf6bf $(gitDeletedFilesCount) \
+\uf16c $(gitStashQueueCount) \
+\uf708 $(gitIgnoredFilesCount) \
+"
+
+}
+ 
+
+gitFlowBranchInfo() {
+  local branchInfo="\uf418"
+  local currentBranch=$(getGitCurrentBranch)
+  local branchType=$(getGitFlowBranchType ${currentBranch})
+
+  if [ "${branchType}" = "master" ];then
+    branchInfo="${branchInfo} \uf1bb ${currentBranch}"
+  elif [ "${branchType}" = "develop" ];then
+    branchInfo="${branchInfo} \uf20f ${currentBranch}"
+  elif [ "${branchType}" = "feature" ];then
+    branchInfo="${branchInfo} \uf634 $(echo ${currentBranch} | cut -d '/' -f 2)"
+  elif [ "${branchType}" = "release" ];then
+    branchInfo="${branchInfo} \uf634 $(echo ${currentBranch} | cut -d '/' -f 2)"
+  elif [ "${branchType}" = "hotfix" ];then
+    branchInfo="${branchInfo} \uf634 $(echo ${currentBranch} | cut -d '/' -f 2)"
+  elif [ "${branchType}" = "support" ];then
+    branchInfo="${branchInfo} \uf634 $(echo ${currentBranch} | cut -d '/' -f 2)"
+  else
+    branchInfo="${branchInfo} \uf634 ${currentBranch}"
+  fi
+
+  echo ${branchInfo}
+}
+
+gitInfo() {
+  local gitType=`getGitType`
+  if [ "${gitType}" = "git" ];then
+    local branchInfo=`gitBranchInfo`
+  elif [ "${gitType}" = "git-flow" ];then
+    local branchInfo=`gitFlowBranchInfo`
+  else
+    return 1
+  fi
+  local repoInfo=`gitRepoInfo`
+  echo ${branchInfo} ${repoInfo}
+  return 0
+}
+
+gitInfo

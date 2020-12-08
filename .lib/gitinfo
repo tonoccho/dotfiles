@@ -1,0 +1,102 @@
+# Check if current directory is a git repository,
+# if so, echoes "git"
+isGitInitialized() {
+  if [ $(git rev-parse --git-dir 2> /dev/null | wc -c) -eq 0 ];then
+    return 1
+  fi
+  echo "git"
+  return 0
+}
+
+# CHeck if current directory is a git-flow initialized
+# if so, echoes "git-flow"
+isGitFlowInitialized() {
+  for i in `echo "master develop"`
+  do
+    local branch=$(git config --get gitflow.branch.${i})
+    if [ $? -ne 0 ];then
+      return 1
+    fi
+    if [ $(git branch 2> /dev/null | grep -E "\s+${branch}" | wc -l) -ne 1 ];then
+      return 1
+    fi
+  done
+
+  for i in `echo "feature release hotfix support versiontag"`
+  do
+    git config --get gitflow.prefix.${i} > /dev/null 2>&1
+    if [ $? -ne 0 ]
+    then
+      return 1
+    fi
+  done
+  echo "git-flow"
+  return 0
+}
+
+getGitType() {
+  if [ "$(isGitFlowInitialized)" = "git-flow" ];then
+    echo "git-flow"
+  elif [ "$(isGitInitialized)" = "git" ];then
+    echo "git"
+  else
+    echo "not-a-repo"
+  fi
+}
+
+getGitCurrentBranch() {
+ git branch | grep -E "^\* .+$" | cut -d ' ' -f 2 | sed 's/ //g'
+}
+
+getGitFlowBranchType() {
+  local masterBranch=`git config --get gitflow.branch.master 2> /dev/null`
+  local developBranch=`git config --get gitflow.branch.develop 2> /dev/null`
+  local featurePrefix=`git config --get gitflow.prefix.feature 2> /dev/null`
+  local releasePrefix=`git config --get gitflow.prefix.release 2> /dev/null`
+  local hotfixPrefix=`git config --get gitflow.prefix.hotfix 2> /dev/null`
+  local supportPrefix=`git config --get gitflow.prefix.support 2> /dev/null`
+
+  if [[ ${1} =~ ^${masterBranch}$ ]];then
+    echo "master"
+  elif [[ ${1} =~ ^${developBranch}$ ]];then
+    echo "develop"
+  elif [[ ${1} =~ ^${featurePrefix}.+$ ]];then
+    echo "feature"
+  elif [[ ${1} =~ ^${releasePrefix}.+$ ]];then
+    echo "release"
+  elif [[ ${1} =~ ^${hotfixPrefix}.+$ ]];then
+    echo "hotfix"
+  elif [[ ${1} =~ ^${supportPrefix}.+$ ]];then
+    echo "support"
+  else
+    echo "unknown"
+    return 1
+  fi
+  return 0
+}
+
+gitAddedFilesCount() {
+  git status --ignored -s | grep -E "^\A.\s.+" | wc -l
+}
+
+gitModifiedFilesCount() {
+  git status --ignored -s | grep -E "^M.\s.+" | wc -l
+}
+
+gitDeletedFilesCount() {
+  git status --ignored -s | grep -E "^D.\s.+" | wc -l
+}
+
+gitUntrackedFilesCount() {
+  git status --ignored -s | grep -E "^\?\?\s.+" | wc -l
+}
+
+gitIgnoredFilesCount() {
+  git status --ignored -s | grep -E "^\!\!\s.+" | wc -l
+}
+
+gitStashQueueCount() {
+  git stash list | wc -l
+}
+
+
