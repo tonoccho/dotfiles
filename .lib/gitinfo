@@ -76,23 +76,19 @@ getGitFlowBranchType() {
 }
 
 gitAddedFilesCount() {
-  git status --ignored -s | grep -E "^\A.\s.+" | wc -l
+  git status -s | grep -E "^\A.\s.+" | wc -l
 }
 
 gitModifiedFilesCount() {
-  git status --ignored -s | grep -E "^M.\s.+" | wc -l
+  git status -s | grep -E "^M.\s.+" | wc -l
 }
 
 gitDeletedFilesCount() {
-  git status --ignored -s | grep -E "^D.\s.+" | wc -l
+  git status -s | grep -E "^D.\s.+" | wc -l
 }
 
 gitUntrackedFilesCount() {
-  git status --ignored -s | grep -E "^\?\?\s.+" | wc -l
-}
-
-gitIgnoredFilesCount() {
-  git status --ignored -s | grep -E "^\!\!\s.+" | wc -l
+  git status -s | grep -E "^\?\?\s.+" | wc -l
 }
 
 gitStashQueueCount() {
