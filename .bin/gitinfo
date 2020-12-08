@@ -26,7 +26,7 @@ gitFlowBranchInfo() {
   if [ "${branchType}" = "master" ];then
     branchInfo="${branchInfo} \uf1bb ${currentBranch}"
   elif [ "${branchType}" = "develop" ];then
-    branchInfo="${branchInfo} \uf20f ${currentBranch}"
+    branchInfo="${branchInfo} \ufb95 ${currentBranch}"
   elif [ "${branchType}" = "feature" ];then
     branchInfo="${branchInfo} \uf634 $(echo ${currentBranch} | cut -d '/' -f 2)"
   elif [ "${branchType}" = "release" ];then
