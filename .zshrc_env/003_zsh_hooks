@@ -1,20 +1,39 @@
 autoload -Uz add-zsh-hook
 
-setLPrompt() {                                                                                                          
-  PROMPT="%K{236}%F{255}ﲾ %m  %n  %~ %# %f%k"                                                                         
-}                                                                                                                       
-                                                                                                                        
-setRPrompt() {                                                                                                          
-  RPROMPT="%K{236}%F{255}`zshp_nodeinf``zshp_goinf``zshp_javainf``zshp_pyenvinf``zshp_rubyinf` `gitinfo`%f%k"        
-}                                                                                                                       
-                                                                                                                        
-my_preexec() {                                                                                                          
+setPrompt() {                                                                                                          
+  LEFT="%K{236}%F{255}ﲾ %m  %n  %~ "
+  RIGHT="`gitinfo``zshp_nodeinf``zshp_goinf``zshp_javainf``zshp_pyenvinf``zshp_rubyinf`%f%k"
+  GAP_LEN=$((${COLUMNS}-${#LEFT}-${#RIGHT}-11))
+  GAP=''
+  for i in `seq 0 ${GAP_LEN}`
+  do
+    GAP="${GAP} "
+  done
+  PROMPT="
+${LEFT}${GAP}${RIGHT}
+
+%# "
 }                                                                                                                       
                                                                                                                         
 my_precmd() {                                                                                                           
-  setLPrompt                                                                                                            
-  setRPrompt                                                                                                            
-}                                                                                                                       
-                                                                                                                        
-add-zsh-hook preexec my_preexec                                                                                         
+  tput cup ${LINES}
+  setPrompt                                                                                                            
+}
 add-zsh-hook precmd my_precmd   
+
+function my_preexec() {
+  if [[ ${#PROMPT} -ne 1 ]];then
+    local savedPrompt=${PROMPT}
+    PROMPT="
+ %# "
+    zle reset-prompt 2> /dev/null
+    PROMPT="${savedPrompt}"
+  fi
+  zle accept-line 2> /dev/null
+  echo ""
+}
+
+zle -N my_preexec
+bindkey '^M' my_preexec
+
+
