@@ -13,7 +13,6 @@ gitRepoInfo() {
 \uf059 $(gitUntrackedFilesCount) \
 \uf6bf $(gitDeletedFilesCount) \
 \uf16c $(gitStashQueueCount) \
-\uf708 $(gitIgnoredFilesCount) \
 "
 
 }
