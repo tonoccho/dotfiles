@@ -2,15 +2,10 @@ autoload -Uz add-zsh-hook
 
 setPrompt() {                                                                                                          
   PROMPT="%K{022}%F{255} ﲾ %m  %n  %16<...<%~%<< %f%k"
-  if [ -n $(zshp_nodeinf) ];then;PROMPT="${PROMPT}%K{148}%F{243} `zshp_nodeinf` %f%k";fi
-  PROMPT="${PROMPT}%K{117}%F{232} `zshp_goinf` %f%k"
-  PROMPT="${PROMPT}%K{009}%F{255} `zshp_javainf` %f%k"
-  PROMPT="${PROMPT}%K{026}%F{220} `zshp_pyenvinf` %f%k"
-  PROMPT="${PROMPT}%K{160}%F{255} `zshp_rubyinf` %f%k"
   PROMPT="${PROMPT}%K{232}%F{255} `gitinfo` %f%k"
   PROMPT="${PROMPT}
 
-%# "
+ %# "
 }                                                                                                                       
                                                                                                                         
 my_precmd() {                                                                                                           
@@ -28,7 +23,6 @@ function my_preexec() {
     PROMPT="${savedPrompt}"
   fi
   zle accept-line 2> /dev/null
-  echo ""
 }
 
 zle -N my_preexec
