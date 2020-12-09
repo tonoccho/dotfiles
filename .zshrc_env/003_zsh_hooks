@@ -25,7 +25,7 @@ function my_preexec() {
   if [[ ${#PROMPT} -ne 1 ]];then
     local savedPrompt=${PROMPT}
     PROMPT="
- %# "
+ %# > "
     zle reset-prompt 2> /dev/null
     PROMPT="${savedPrompt}"
   fi
