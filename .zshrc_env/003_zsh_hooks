@@ -12,7 +12,7 @@ setPrompt() {
 
   PROMPT="${PROMPT} 
 
- %# "
+%(?:%K{017}%F{255} %?:%K{052}%F{255} %?) %# > %f%k "
 }                                                                                                                       
                                                                                                                         
 my_precmd() {                                                                                                           
