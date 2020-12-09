@@ -1,7 +1,7 @@
 autoload -Uz add-zsh-hook
 
 setPrompt() {                                                                                                          
-  PROMPT="%K{022}%F{255} ﲾ %m  %n  %16<...<%~%<< %f%k"
+  PROMPT="%K{022}%F{255} ﲾ %m  %n  %~ %f%k"
 
   local gitInfo=`gitinfo`
   if [ ${#gitInfo} -ne 0 ]
@@ -17,7 +17,7 @@ setPrompt() {
 
   PROMPT="${PROMPT} 
 
-%(?:%K{017}%F{255} %?:%K{052}%F{255} %?) %# > %f%k "
+%(?:%K{017}%F{255} %?:%K{052}%F{255} %?) $(basename `pwd`) %# > %f%k "
 }                                                                                                                       
                                                                                                                         
 my_precmd() {                                                                                                           
