@@ -2,8 +2,15 @@ autoload -Uz add-zsh-hook
 
 setPrompt() {                                                                                                          
   PROMPT="%K{022}%F{255} ﲾ %m  %n  %16<...<%~%<< %f%k"
-  PROMPT="${PROMPT}%K{232}%F{255} `gitinfo` %f%k"
-  PROMPT="${PROMPT}
+  PROMPT="${PROMPT}%K{232}%F{255} `gitinfo`%f%k"
+
+  local javaInfo=`javainfo`
+  if [ -n ${javaInfo} ]
+  then
+    PROMPT="${PROMPT}%K{009}%F{255} ${javaInfo} %f%k"
+  fi
+
+  PROMPT="${PROMPT} 
 
  %# "
 }                                                                                                                       

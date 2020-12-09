@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+source ${HOME}/.lib/javainfo
+
+javaInfo(){
+  if [ "$(isJavaInstalled)" = "java" ]
+  then
+    echo "\ue738 $(getJavaVersion)"
+  fi
+}
+
+javaInfo
