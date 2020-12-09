@@ -15,6 +15,12 @@ setPrompt() {
     PROMPT="${PROMPT}%K{009}%F{255} ${javaInfo} %f%k"
   fi
 
+  local nodeInfo=`nodeinfo`
+  if [ ${#nodeInfo} -ne 0 ]
+  then
+    PROMPT="${PROMPT}%K{000}%F{255} ${nodeInfo} %f%k"
+  fi
+
   PROMPT="${PROMPT} 
 
 %(?:%K{017}%F{255} %?:%K{052}%F{255} %?) $(basename `pwd`) %# > %f%k "

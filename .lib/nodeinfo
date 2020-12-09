@@ -1,0 +1,11 @@
+isNodeInstalled() {
+  node --version > /dev/null 2>&1
+  if [ $? -eq 0 ]
+  then
+    echo "node"
+  fi
+}
+
+getNodeVersion() {
+  node --version
+}

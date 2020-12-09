@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+source ${HOME}/.lib/nodeinfo
+
+nodeInfo(){
+  if [ "$(isNodeInstalled)" = "node" ]
+  then
+    echo "\ue738 $(getNodeVersion)"
+  fi
+}
+
+nodeInfo
