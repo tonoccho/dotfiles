@@ -5,7 +5,7 @@ source ${HOME}/.lib/nodeinfo
 nodeInfo(){
   if [ "$(isNodeInstalled)" = "node" ]
   then
-    echo "\ue738 $(getNodeVersion)"
+    echo "\uf898 $(getNodeVersion)"
   fi
 }
 
