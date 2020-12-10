@@ -33,6 +33,12 @@ setPrompt() {
     PROMPT="${PROMPT}%K{058}%F{255} ${pythonInfo} %f%k"
   fi
 
+  local goInfo=`goinfo`
+  if [ ${#goInfo} -ne 0 ]
+  then
+    PROMPT="${PROMPT}%K{053}%F{255} ${goInfo} %f%k"
+  fi
+
   PROMPT="${PROMPT} 
 
 %(?:%K{017}%F{255} %?:%K{052}%F{255} %?) $(basename `pwd`) %# > %f%k "

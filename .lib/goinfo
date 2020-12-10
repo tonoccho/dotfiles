@@ -1,0 +1,11 @@
+isGoInstalled() {
+  go version > /dev/null 2>&1
+  if [ $? -eq 0 ]
+  then
+    echo "go"
+  fi
+}
+
+getGoVersion() {
+  go version | cut -d ' ' -f 3
+}

@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+source ${HOME}/.lib/goinfo
+
+goInfo(){
+  if [ "$(isGoInstalled)" = "go" ]
+  then
+    echo "\ue626 $(getGoVersion)"
+  fi
+}
+
+goInfo
