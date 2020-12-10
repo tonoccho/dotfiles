@@ -7,5 +7,5 @@ isPythonInstalled() {
 }
 
 getPythonVersion() {
-  python --version | cut -d ' ' -f 2
+  python --version 2>&1 | cut -d ' ' -f 2
 }
