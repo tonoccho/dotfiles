@@ -1,0 +1,29 @@
+getCPUVendor() {
+  local vendor=`cat /proc/cpuinfo | grep "vendor_id" | uniq | cut -d ':' -f 2 | sed 's/ //g'`
+
+  if [ "${vendor}" = "AuthenticAMD" ]
+  then
+    echo "AMD"
+  elif [ "${vendor}" = "GenuineIntel" ]
+  then
+    echo "Intel"
+  else
+    echo "Unknown"
+  fi
+}
+
+getCPUModelName() {
+  cat /proc/cpuinfo | grep "model name" | sed 's/: /:/g' | cut -d ':' -f 2 
+}
+
+getCPUProcessorCount() {
+  cat /proc/cpuinfo | grep processor | wc -l 
+}
+
+getCPUCoreCount() {
+  cat /proc/cpuinfo | grep "core id" | sort | uniq | wc -l
+}
+
+getCPUAverageMHZ() {
+  cat /proc/cpuinfo | grep "cpu MHz" | cut -d ':' -f 2 | sed ' s/ //g' | awk '{sum+=$1} END {print sum/NR}'
+}
