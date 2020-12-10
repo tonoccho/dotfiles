@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+source ${HOME}/.lib/pythoninfo
+
+pythonInfo(){
+  if [ "$(isPythonInstalled)" = "python" ]
+  then
+    echo "\ue73c $(getPythonVersion)"
+  fi
+}
+
+pythonInfo

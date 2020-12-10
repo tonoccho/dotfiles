@@ -1,0 +1,11 @@
+isPythonInstalled() {
+  python --version > /dev/null 2>&1
+  if [ $? -eq 0 ]
+  then
+    echo "python"
+  fi
+}
+
+getPythonVersion() {
+  python --version | cut -d ' ' -f 2
+}
