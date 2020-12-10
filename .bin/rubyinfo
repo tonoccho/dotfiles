@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+source ${HOME}/.lib/rubyinfo
+
+rubyInfo(){
+  if [ "$(isRubyInstalled)" = "ruby" ]
+  then
+    echo "\ue739 $(getRubyVersion)"
+  fi
+}
+
+rubyInfo

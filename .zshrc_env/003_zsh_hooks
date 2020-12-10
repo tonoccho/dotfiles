@@ -18,7 +18,14 @@ setPrompt() {
   local nodeInfo=`nodeinfo`
   if [ ${#nodeInfo} -ne 0 ]
   then
-    PROMPT="${PROMPT}%K{000}%F{255} ${nodeInfo} %f%k"
+    PROMPT="${PROMPT}%K{234}%F{255} ${nodeInfo} %f%k"
+  fi
+
+  local rubyInfo=`rubyinfo`
+  if [ ${#rubyInfo} -ne 0 ]
+  then
+    PROMPT="${PROMPT}%K{052}%F{255} ${rubyInfo} %f%k"
+088
   fi
 
   PROMPT="${PROMPT} 

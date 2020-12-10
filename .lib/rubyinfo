@@ -1,0 +1,11 @@
+isRubyInstalled() {
+  ruby --version > /dev/null 2>&1
+  if [ $? -eq 0 ]
+  then
+    echo "ruby"
+  fi
+}
+
+getRubyVersion() {
+  ruby --version | cut -d ' ' -f 2
+}
