@@ -84,7 +84,7 @@ gitModifiedFilesCount() {
 }
 
 gitDeletedFilesCount() {
-  git status -s | grep -E "^D.\s.+" | wc -l
+  git status -s | grep -E "^.D\s.+" | wc -l
 }
 
 gitUntrackedFilesCount() {
