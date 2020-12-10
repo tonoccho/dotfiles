@@ -7,7 +7,7 @@ cpuInfo() {
   local cores=`getCPUCoreCount`
   local averageClock=`getCPUAverageMHZ`
 
-  echo "\uf1ad ${vendor} \uf2db ${cores} \ue28c ${processors} \uf651 ${averageClock}"
+  echo "\uf1ad ${vendor} \uf2db ${cores} \ue28c ${processors} \uf651 ${averageClock}MHZ"
 }
 
 cpuInfo
