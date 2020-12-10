@@ -25,7 +25,12 @@ setPrompt() {
   if [ ${#rubyInfo} -ne 0 ]
   then
     PROMPT="${PROMPT}%K{052}%F{255} ${rubyInfo} %f%k"
-088
+  fi
+
+  local pythonInfo=`pythoninfo`
+  if [ ${#pythonInfo} -ne 0 ]
+  then
+    PROMPT="${PROMPT}%K{058}%F{255} ${pythonInfo} %f%k"
   fi
 
   PROMPT="${PROMPT} 
