@@ -25,5 +25,6 @@ getCPUCoreCount() {
 }
 
 getCPUAverageMHZ() {
-  cat /proc/cpuinfo | grep "cpu MHz" | cut -d ':' -f 2 | sed ' s/ //g' | awk '{sum+=$1} END {print sum/NR}'
+  local mhz=`cat /proc/cpuinfo | grep "cpu MHz" | cut -d ':' -f 2 | sed ' s/ //g' | awk '{sum+=$1} END {print sum/NR}'`
+   printf "%4.2f" ${mhz}
 }
