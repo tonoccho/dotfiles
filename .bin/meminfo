@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+source ${HOME}/.lib/meminfo
+
+memInfo() {
+  echo "\uf85a $(($(getMemAvailable)/1024))/$(($(getMemTotal)/1024))MB"
+}
+
+memInfo
