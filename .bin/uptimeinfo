@@ -2,7 +2,7 @@
 source ${HOME}/.lib/uptimeinfo
 
 uptimeInfo() {
-  echo "\uf924$(getBootAt) \uf90c$(getUptime)"
+  echo "\uf90c$(getUptime)"
 }
 
 uptimeInfo
