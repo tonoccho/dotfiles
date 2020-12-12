@@ -1,0 +1,7 @@
+getMemTotal() {
+  cat /proc/meminfo | grep MemTotal | sed 's/ \+/ /g' | cut -d ' ' -f 2
+}
+
+getMemAvailable() {
+  cat /proc/meminfo | grep MemAvailable | sed 's/ \+/ /g' | cut -d ' ' -f 2
+}
