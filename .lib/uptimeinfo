@@ -1,0 +1,7 @@
+getUptime() {
+  uptime | sed 's/ \+/ /g' | sed 's/,//g' | cut -d ' ' -f 4
+}
+
+getBootAt() {
+  uptime | sed 's/ \+/ /g' | sed 's/,//g' | cut -d ' ' -f 2
+}
