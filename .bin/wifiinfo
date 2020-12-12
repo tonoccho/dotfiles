@@ -7,7 +7,7 @@ wifiStatus() {
   then
     echo "\uf1eb `getWifiAccessPoint` \uf502 `getWifiIpAddress` \uf012 `getWifiSignalLevel`% \uf9c4`getWifiBitRate`Mbps"
   else
-    echo "\ufaa9"
+    echo "\ufaa9NO WIFI"
   fi
 }
 
