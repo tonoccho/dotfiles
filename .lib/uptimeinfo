@@ -1,5 +1,5 @@
 getUptime() {
-  uptime | sed 's/ \+/ /g' | sed 's/,//g' | cut -d ' ' -f 4
+  uptime -p | sed 's/up //g' | sed 's/ day,/D/g' | sed 's/ hours,/H/g' | sed 's/ minutes/M/g'
 }
 
 getBootAt() {
