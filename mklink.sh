@@ -16,7 +16,7 @@ do
 done
 
 
-for i in `find . -type f | grep -v "\.git"`
+for i in `find . -type f | grep -v "\.git/"`
 do
   [[ ${i} =~ ^.+mklink\.sh$ ]] && continue
   [[ ${i} =~ ^.+README\.md$ ]] && continue
