@@ -8,3 +8,5 @@ set blob-view   = line-number:yes,interval=1 text
 set diff-view   = line-number:yes,interval=1 text:yes,commit-title-overflow=no
 
 set line-graphics = utf-8
+
+set diff-highlight = true
