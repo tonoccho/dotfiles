@@ -1,0 +1,43 @@
+[ola]
+  spellcheck = false
+[alias]
+  co = checkout
+  br = branch
+  ci = commit
+  st = status
+  apply = !f() {git merge --no-commit --no-ff $1}
+  i-have-done-nothing = reset --hard
+  cancel-the-latest-commit-softly = reset --soft HEAD^
+  cancel-the-latest-commit-hardly = reset --hard HEAD^
+  start-work-on-a-branch = "!f(){ git checkout -b $1;};f"
+  
+[pager]
+  branch = false
+[core]
+  editor = vim
+[init]
+	defaultBranch = main
+[user]
+	name = Seiji Tonouchi
+	email = s.tonouchi@gmail.com
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPC3Y4ivyFpgyFELG61AqtdvuR7ciLpGTkFmZLZzdEzS
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/opt/1Password/op-ssh-sign"
+
+[commit]
+  gpgsign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
