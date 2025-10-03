@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=RawTherapee
+Comment=Raw Editor
+Exec=${HOME}/.local/share/toastee/RawTherapee.AppImage
+Icon=${HOME}/.local/share/toastee/RawTherapee.svg
+Terminal=false
+Type=Application
+Categories=Utility;
