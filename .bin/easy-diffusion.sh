@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cd ${HOME}/.opt/easy-diffusion/start.sh
+${HOME}/.opt/easy-diffusion/start.sh
