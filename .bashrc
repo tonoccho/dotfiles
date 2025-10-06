@@ -118,3 +118,4 @@ fi
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:${HOME}/.local/share/applications
 export PATH=$PATH:${HOME}/.bin
 source ${HOME}/.config/mypc/g512-carbon-colouring.sh
+~/.nodenv/bin/nodenv init
